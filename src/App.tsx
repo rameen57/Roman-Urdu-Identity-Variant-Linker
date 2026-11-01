@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import ConsolePage from './pages/Console'
+import DashboardPage from './pages/Dashboard'
 import KnowledgePage from './pages/Knowledge'
 import McpPage from './pages/Mcp'
 import MemoryPage from './pages/Memory'
@@ -12,7 +13,8 @@ export default function App() {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Navigate to="/console" replace />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/console" element={<ConsolePage />} />
           <Route path="/records" element={<RecordsPage />} />
           <Route path="/review" element={<ReviewPage />} />

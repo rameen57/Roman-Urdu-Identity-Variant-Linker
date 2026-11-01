@@ -10,7 +10,7 @@ interface Msg { role: 'user' | 'assistant'; content: string }
 
 export default function ConsolePage() {
   const [sessionId] = useState(() => 'session-' + Math.random().toString(36).slice(2))
-  const [messages, setMessages] = useState<Msg[]>([])
+  const [messages, setMessages] = useState<Msg[]>([{ role: 'assistant', content: 'Welcome. Ask me to compare two records, e.g. REC-014 and REC-097.' }])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -48,6 +48,11 @@ export default function ConsolePage() {
           {loading && <Loading label="Thinking..." />}
         </div>
         {error && <ErrorState label={error} />}
+        <div className="mb-2 flex flex-wrap gap-2">
+          {['Are REC-014 and REC-097 the same person?', 'Compare REC-332 and REC-341', 'Check REC-501 vs REC-509'].map((q) => (
+            <button key={q} onClick={() => { setInput(q) }} className="rounded-full bg-cream px-3 py-1 text-xs font-semibold text-muted hover:bg-lavender/40">{q}</button>
+          ))}
+        </div>
         <div className="flex gap-2">
           <input
             className="flex-1 rounded-btn border border-line bg-white px-3 py-2 text-sm"

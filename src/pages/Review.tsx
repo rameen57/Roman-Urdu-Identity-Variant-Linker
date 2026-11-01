@@ -8,7 +8,12 @@ import type { LinkItem, RecordItem } from '../types'
 
 const suggested = [
   { a: 'REC-014', b: 'REC-097', score: 0.96, verdict: 'Likely same' as const },
+  { a: 'REC-014', b: 'REC-205', score: 0.97, verdict: 'Likely same' as const },
+  { a: 'REC-014', b: 'REC-219', score: 0.95, verdict: 'Likely same' as const },
   { a: 'REC-014', b: 'REC-131', score: 0.84, verdict: 'Possible' as const },
+  { a: 'REC-332', b: 'REC-341', score: 0.95, verdict: 'Likely same' as const },
+  { a: 'REC-410', b: 'REC-418', score: 0.93, verdict: 'Likely same' as const },
+  { a: 'REC-501', b: 'REC-509', score: 0.92, verdict: 'Possible' as const },
 ]
 
 export default function ReviewPage() {

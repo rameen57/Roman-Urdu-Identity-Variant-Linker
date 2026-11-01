@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 
 const nav = [
+  { to: '/dashboard', label: 'Dashboard' },
   { to: '/console', label: 'Console' },
   { to: '/records', label: 'Records' },
   { to: '/review', label: 'Review' },
