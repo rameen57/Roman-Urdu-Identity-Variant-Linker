@@ -175,7 +175,7 @@ def mcp_compare_records(ra: dict, rb: dict) -> dict:
         band = 'Likely same'
     elif combined < 0.75 or not te:
         band = 'Unlikely'
-    if yd is not None and yd > 1:
+    if band == 'Likely same' and yd is not None and yd > 1:
         band = 'Hard conflict'
     return {
         'name_similarity': ns, 'father_name_similarity': fs,
@@ -429,5 +429,3 @@ def knowledge():
 @app.get('/')
 def root():
     return {'message': 'Identity Variant Linker backend. See /api/health'}
-
-EOF

@@ -9,5 +9,3 @@ Matching bands:
 4. Hard conflict: birth years differ by more than 1 year. Reject and explain.
 
 All data and rules in this SOP are fictional demonstration data.
-
-EOF

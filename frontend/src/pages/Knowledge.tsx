@@ -51,7 +51,7 @@ export default function KnowledgePage() {
             <div key={d.id} className="rounded-xl border border-inset bg-inset p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="font-bold text-text">{d.id} — {d.title}</div>
-                <Pill label={d.category} variant={d.category === 'Official SOP' ? 'info' : 'success'} />
+                <Pill label={d.category ?? 'User Ingested'} variant={d.category === 'Official SOP' ? 'info' : 'success'} />
               </div>
               <div className="text-xs text-muted mb-2">{Math.round((d.score ?? 0) * 100)}% match</div>
               <div className="space-y-1">

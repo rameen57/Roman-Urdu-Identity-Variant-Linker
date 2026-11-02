@@ -39,7 +39,6 @@ def band(combined, te, supporting=True):
 
 
 def main():
-    from backend.data.records import RECORDS  # may fail if run standalone; fallback below
     try:
         sys.path.insert(0, os.path.dirname(__file__))
         with open(os.path.join(os.path.dirname(__file__), 'data', 'records.json'), 'r', encoding='utf-8') as f:
@@ -84,4 +83,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-EOF

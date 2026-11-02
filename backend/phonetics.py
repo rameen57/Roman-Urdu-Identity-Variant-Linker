@@ -29,4 +29,3 @@ def token_key(tok: str) -> str:
 
 def phonetic_key(name: str) -> str:
     return ' '.join(token_key(t) for t in clean_tokens(name))
-EOF

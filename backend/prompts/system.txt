@@ -33,5 +33,3 @@ Evidence for: Names share the family name Khan; some phonetic overlap.
 Evidence against: Name tokens differ phonetically (mmmd al xn vs mmmd amd xn); birth years differ (1988 vs 1991); cities differ (Lahore vs Multan).
 Policy cited: Records Office Matching SOP
 Next step: Explain uncertainty and ask for more fields before any link is saved.
-
-EOF

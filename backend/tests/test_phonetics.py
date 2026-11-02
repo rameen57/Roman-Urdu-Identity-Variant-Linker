@@ -33,9 +33,7 @@ def test_decision_band_likely():
 
 def test_decision_band_hard_conflict():
     from mcp_server import compare_records  # noqa: E402
-    ra = {'name': 'Ali Khan', 'father_name': 'Tariq Khan', 'birth_year': 1995, 'city': 'Lahore'}
-    rb = {'name': 'Ahmed Khan', 'father_name': 'Tariq Khan', 'birth_year': 1996, 'city': 'Lahore'}
+    ra = {'name': 'Muhammad Ali Khan', 'father_name': 'Abdul Rahman Khan', 'birth_year': 1988, 'city': 'Lahore'}
+    rb = {'name': 'Mohammed Ali Khan', 'father_name': 'Abdul Rahman Khan', 'birth_year': 1992, 'city': 'Lahore'}
     res = compare_records(ra, rb)
     assert res['band'] == 'Hard conflict'
-
-EOF

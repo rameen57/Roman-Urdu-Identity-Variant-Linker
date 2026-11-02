@@ -37,4 +37,3 @@ Then run the frontend with `VITE_USE_MOCK=false` to connect to the backend.
 
 ## Files
 - `C:\Users\HP\Downloads\Roman-Urdu-Identity-Variant-Linker-full.zip` — runnable project (extract, open in VS Code, run commands above)
-EOF

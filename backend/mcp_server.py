@@ -6,7 +6,7 @@ from difflib import SequenceMatcher
 
 from mcp.server.fastmcp import FastMCP
 
-from phonetics import ABBREV, RULES, clean_tokens, phonetic_key
+from phonetics import ABBREV, RULES, clean_tokens, token_key, phonetic_key as _phonetic_key
 
 mcp = FastMCP(
     name='Identity Variant Linker',
@@ -70,14 +70,14 @@ def geocode_city(city, country_code='PK'):
 @mcp.tool()
 def phonetic_key(name: str) -> dict:
     """Normalise a Roman-Urdu name into a phonetic key."""
-    return {'name': name, 'key': phonetic_key(name)}
+    return {'name': name, 'key': _phonetic_key(name)}
 
 
 @mcp.tool()
 def name_similarity(name_a: str, name_b: str) -> dict:
     """Compare two Roman-Urdu names. Returns phonetic, spelling and combined scores."""
     ta, tb = clean_tokens(name_a), clean_tokens(name_b)
-    ka, kb = phonetic_key(name_a), phonetic_key(name_b)
+    ka, kb = _phonetic_key(name_a), _phonetic_key(name_b)
     if not ta or not tb:
         return {'error': 'Both names must contain letters.'}
     phon = SequenceMatcher(None, ka, kb).ratio()
@@ -105,7 +105,7 @@ def compare_records(record_a: dict, record_b: dict) -> dict:
 
     fa = record_a.get('father_name', '')
     fb = record_b.get('father_name', '')
-    father_sim = SequenceMatcher(None, phonetic_key(fa), phonetic_key(fb)).ratio() if fa and fb else 0.0
+    father_sim = SequenceMatcher(None, _phonetic_key(fa), _phonetic_key(fb)).ratio() if fa and fb else 0.0
 
     ya, yb = record_a.get('birth_year'), record_b.get('birth_year')
     year_diff = abs(ya - yb) if ya is not None and yb is not None else None
@@ -128,7 +128,7 @@ def compare_records(record_a: dict, record_b: dict) -> dict:
     else:
         band = 'Unlikely'
 
-    if year_diff is not None and year_diff > 1:
+    if band == 'Likely same' and year_diff is not None and year_diff > 1:
         band = 'Hard conflict'
 
     return {
@@ -171,7 +171,7 @@ def compare_cities(city_a: str, city_b: str) -> dict:
     """Decide if two city spellings are the same place, using the geocoding API."""
     a, b = geocode_city(city_a), geocode_city(city_b)
     if 'error' in a or 'error' in b:
-        score = SequenceMatcher(None, phonetic_key(city_a), phonetic_key(city_b)).ratio()
+        score = SequenceMatcher(None, _phonetic_key(city_a), _phonetic_key(city_b)).ratio()
         return {
             'method': 'phonetic fallback',
             'similarity': round(score, 2),
@@ -192,10 +192,10 @@ def compare_cities(city_a: str, city_b: str) -> dict:
 @mcp.tool()
 def search_candidates(name: str) -> dict:
     """Find local registry records whose name sounds similar."""
-    key = phonetic_key(name)
+    key = _phonetic_key(name)
     hits = []
     for rid, rec in RECORDS.items():
-        score = SequenceMatcher(None, key, phonetic_key(rec['name'])).ratio()
+        score = SequenceMatcher(None, key, _phonetic_key(rec['name'])).ratio()
         if score >= 0.8:
             hits.append({'record_id': rid, 'key_score': round(score, 2), **rec})
     return {'candidates': sorted(hits, key=lambda h: -h['key_score'])}
@@ -260,4 +260,3 @@ def review_candidate_match(name_a: str, name_b: str) -> str:
 
 if __name__ == '__main__':
     mcp.run(transport='streamable-http')
-EOF
