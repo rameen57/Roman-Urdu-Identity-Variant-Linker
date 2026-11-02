@@ -1,17 +1,17 @@
-import Footer from './Footer'
+import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import TopBar from './TopBar'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   return (
-    <div className="flex h-screen bg-cream">
+    <div className="flex h-screen overflow-hidden">
       <Sidebar />
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex flex-1 flex-col overflow-hidden">
         <TopBar />
-        <main className="flex-1 overflow-auto">
-          <div className="mx-auto max-w-[1200px] px-6 py-6">{children}</div>
+        <main className="flex-1 overflow-y-auto bg-bg p-6">
+          <Outlet />
         </main>
-        <Footer />
+        <div className="border-t border-track px-6 py-3 text-[11px] text-muted">All data and rules are fictional demonstration data.</div>
       </div>
     </div>
   )

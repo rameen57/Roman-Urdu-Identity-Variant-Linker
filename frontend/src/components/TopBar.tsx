@@ -1,8 +1,13 @@
+import Pill from './Pill'
+
 export default function TopBar() {
   return (
-    <header className="flex h-16 items-center justify-between border-b border-line bg-white/80 px-6 backdrop-blur">
-      <div className="text-sm font-semibold text-muted">Fictional Records Office</div>
-      <div className="rounded-full bg-mint px-3 py-1 text-xs font-bold text-ink">Mock mode: {import.meta.env.VITE_USE_MOCK !== 'false' ? 'on' : 'off'}</div>
+    <header className="h-16 border-b border-track bg-surface/95 backdrop-blur flex items-center justify-between px-6">
+      <div className="text-sm font-semibold text-text">Records Office Agent Console</div>
+      <div className="flex items-center gap-3">
+        <Pill label="Mock mode" variant="muted" />
+        <span className="text-[10px] text-muted">{import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}</span>
+      </div>
     </header>
   )
 }
