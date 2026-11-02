@@ -223,3 +223,19 @@ __marimo__/
 node_modules/
 dist/
 *.local
+
+
+
+# Node / frontend
+node_modules/
+dist/
+*.local
+
+# Backend
+backend/.env
+backend/data/ltm.json
+backend/data/*.json
+backend/chroma_storage/
+__pycache__/
+*.pyc
+
